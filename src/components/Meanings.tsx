@@ -2,7 +2,6 @@ import React from "react";
 import type { MeaningT } from "@/types";
 import Definitions from "./Definitions";
 import SynonymsAntonyms from "./SynAnt";
-
 const Meanings = ({ meaning }: { meaning: MeaningT }) => {
   const allSynonyms = meaning.definitions.map((d) => d.synonyms).flat();
   const allAntonyms = meaning.definitions.map((d) => d.antonyms).flat();

@@ -16,7 +16,7 @@ const SynonymsAntonyms = ({
             <li key={title + i + s}>
               <Link
                 href={`?search=${s}`}
-                className="text-sm capitalize text-purple-700 hover:underline"
+                className="text-sm capitalize text-purple-700 dark:text-purple-300 hover:underline"
               >
                 {s}
               </Link>
