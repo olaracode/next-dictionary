@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { GrBook, GrDown } from "react-icons/gr";
+import { GrBook, GrSearch } from "react-icons/gr";
 import Link from "next/link";
 import "./globals.css";
 import Dynamics from "@/components/navbar/Dynamics";
-
+import SearchBar from "@/components/SearchBar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -29,6 +29,7 @@ export default function RootLayout({
           </div>
         </nav>
         <div className="w-[90vw] mx-auto md:max-w-[732px] py-8 lg:max-w-[1000px]">
+          <SearchBar />
           {children}
         </div>
       </body>

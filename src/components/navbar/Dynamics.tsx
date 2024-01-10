@@ -5,7 +5,10 @@ import { GrDown, GrMoon, GrSun } from "react-icons/gr";
 import useDarkTheme from "@/hooks/useDarkTheme";
 import useDisclosure from "@/hooks/useDisclosure";
 import useClickOutside from "@/hooks/useClickOutside";
-import useTypography from "@/hooks/useTypography";
+import useTypography, { FontVariantT } from "@/hooks/useTypography";
+
+const typographyOptions = ["serif", "sans-serif", "monospace"];
+
 const Dynamics = () => {
   const { toggle, theme } = useDarkTheme();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -14,34 +17,27 @@ const Dynamics = () => {
   return (
     <div className="flex gap-2">
       <button
-        className="flex items-center gap-1"
+        className="flex items-center justify-center gap-1 w-[100px] capitalize"
         onClick={isOpen ? onClose : onOpen}
       >
         {typography} <GrDown />
       </button>
       {isOpen && (
         <div
-          className="absolute z-10 top-16 flex flex-col gap-3 p-4 bg-white rounded-md shadow-md dark:bg-slate-600"
+          className="absolute z-10 w-[150px] top-16 flex flex-col gap-3 p-4 bg-white rounded-md shadow-md dark:bg-slate-600"
           ref={ref}
         >
-          <button
-            className="hover:underline"
-            onClick={() => changeTypography("serif")}
-          >
-            <span>Serif</span>
-          </button>
-          <button
-            className="hover:underline"
-            onClick={() => changeTypography("sans-serif")}
-          >
-            <span>Sans Serif</span>
-          </button>
-          <button
-            className="hover:underline"
-            onClick={() => changeTypography("mono")}
-          >
-            <span>Mono</span>
-          </button>
+          {typographyOptions.map((variant) => (
+            <button
+              key={variant}
+              className={`${
+                variant === typography ? "font-bold" : ""
+              } hover:bg-gray-200 dark:hover:bg-slate-700 rounded-md px-4 py-2 capitalize`}
+              onClick={() => changeTypography(variant as FontVariantT)}
+            >
+              {variant}
+            </button>
+          ))}
         </div>
       )}
       <div className="border-l-2 border-gray-300" />
