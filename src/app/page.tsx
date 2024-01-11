@@ -19,7 +19,7 @@ export default async function Home({
   };
 }) {
   const search: DictionaryResponse = await getWordFromDictionary(
-    searchParams.search || "hello"
+    searchParams.search || "dictionary"
   );
   return (
     <main className="flex min-h-screen my-10">

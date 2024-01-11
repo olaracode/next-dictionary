@@ -1,12 +1,26 @@
 import React from "react";
-import type { DictionaryResponse } from "@/types";
+import type { DictionaryResponse, Phonetic as PhoneticT } from "@/types";
 import { FaPlay } from "react-icons/fa";
 import Meanings from "./Meanings";
 import Phonetic from "./Phonetic";
+
+function findMatch(objects: PhoneticT[], key: keyof PhoneticT) {
+  const foundObject = objects.find(
+    (obj: { [x: string]: string | number | boolean | undefined }) =>
+      obj.hasOwnProperty(key) && obj[key] !== ""
+  );
+
+  if (foundObject) {
+    return foundObject[key];
+  }
+  return null;
+}
 const Word = ({ word }: { word: DictionaryResponse }) => {
   return (
     <div className="w-full">
       {word.map((w, i) => {
+        const phoneticAudio = findMatch(w.phonetics, "audio");
+
         return (
           <div className="w-full mb-20" key={w.word + "-" + i}>
             <div className="flex justify-between items-center w-full">
@@ -16,9 +30,9 @@ const Word = ({ word }: { word: DictionaryResponse }) => {
                   {w.phonetic}
                 </p>
               </div>
-              {w.phonetics.length > 0 && w.phonetics[0].audio ? (
+              {phoneticAudio ? (
                 <Phonetic
-                  phoneticSound={w.phonetics[0].audio}
+                  phoneticSound={phoneticAudio}
                   phoneticAlt={w.phonetics[0].text}
                 />
               ) : (
