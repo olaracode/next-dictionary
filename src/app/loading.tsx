@@ -43,8 +43,8 @@ const Skeleton = () => {
   );
 };
 
-const loading = () => {
+const Loading = () => {
   return <Skeleton />;
 };
 
-export default loading;
+export default Loading;

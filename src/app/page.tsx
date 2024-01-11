@@ -21,7 +21,6 @@ export default async function Home({
   const search: DictionaryResponse = await getWordFromDictionary(
     searchParams.search || "hello"
   );
-  console.log(search, "Busqueda");
   return (
     <main className="flex min-h-screen my-10">
       <Word word={search} />

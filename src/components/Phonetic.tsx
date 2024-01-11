@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { FaPlay } from "react-icons/fa";
+
 const Phonetic = ({
   phoneticSound,
   phoneticAlt,
@@ -8,9 +9,11 @@ const Phonetic = ({
   phoneticSound: string;
   phoneticAlt: string;
 }) => {
-  const audio = new Audio(phoneticSound);
   const playSound = () => {
-    audio.play();
+    if (typeof window !== "undefined") {
+      const audio = new Audio(phoneticSound);
+      audio.play();
+    }
   };
 
   return (
